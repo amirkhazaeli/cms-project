@@ -1,7 +1,9 @@
+import Sidebar from "./Components/Sidebar/Sidebar";
+
 function App() {
   return (
    <>
-   <h1>امیر محمد</h1>
+   <Sidebar />
    </>
   );
 }
