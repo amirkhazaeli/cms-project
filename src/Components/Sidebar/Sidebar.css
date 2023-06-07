@@ -1,31 +1,38 @@
-.sidebar{
+.sidebar {
     background-color: var(--primary-color);
     color: var(--white);
     height: 100vh;
     overflow: hidden;
     font-size: 1.3rem;
+    flex: 1;
 }
-.sidebar-title{
+
+.sidebar-title {
     padding: 1rem;
     border-bottom: 1px solid rgba(250, 250, 250, 0.4);
 }
-.sidebar-list li{
+
+.sidebar-list li {
     width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
 }
-.sidebar-list li:hover{
+
+.sidebar-list li:hover {
     cursor: pointer;
 }
-.sidebar-list li svg{
+
+.sidebar-list li svg {
     padding-left: .5rem;
 }
-.sidebar-list li:first-child{
+
+.sidebar-list li:first-child {
     margin-top: .5rem;
     margin-bottom: 1rem;
     font-size: 1.4rem;
 }
-.sidebar-list li.active{
+
+.sidebar-list li.active {
     background-color: rgb(10, 19, 107);
 }
