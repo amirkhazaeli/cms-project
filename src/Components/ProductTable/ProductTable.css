@@ -36,3 +36,7 @@ tr.product-item{
 .table-product-btn:hover {
     background-color: rgb(10, 19, 107);
 }
+
+.price{
+    color: red;
+}

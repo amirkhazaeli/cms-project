@@ -1,18 +1,21 @@
 import React, { useState } from 'react'
-import DeleteModal from '../DeleteModal/DeleteModal';
+import Modal from '../Modal/Modal';
 import './ProductTable.css'
 
 export default function ProductTable() {
 
-    const [showModal, setShowModal] = useState(false);
-
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showDetailsModal, setShoeDetailsModal] = useState(false)
     const DeleteModalSubmitAction = () => {
-      setShowModal(false);
+        setShowDeleteModal(false);
     };
-  
+
     const DeleteModalCancelAction = () => {
-      setShowModal(false);
+        setShowDeleteModal(false);
     };
+    const DetailsModalHandler = () => {
+        setShoeDetailsModal(false)
+    }
     return (
         <>
             <div className='product-table'>
@@ -35,8 +38,8 @@ export default function ProductTable() {
                             <td>26,000 تومان</td>
                             <td>20</td>
                             <td>
-                                <button className='table-product-btn'>جزییات</button>
-                                <button className='table-product-btn' onClick={()=> setShowModal(true)}>حذف</button>
+                                <button className='table-product-btn' onClick={() => setShoeDetailsModal(true)}>جزییات</button>
+                                <button className='table-product-btn' onClick={() => setShowDeleteModal(true)}>حذف</button>
                                 <button className='table-product-btn'>ویرایش</button>
                             </td>
                         </tr>
@@ -46,7 +49,31 @@ export default function ProductTable() {
 
             </div>
             {
-                showModal && <DeleteModal cancelAction={DeleteModalCancelAction} submitAction={DeleteModalSubmitAction}/>
+                showDeleteModal && <Modal>
+                    <>
+                        <h1 className='modal-title'>ایا از حذف اطمینان داری؟</h1>
+                        <button onClick={() => DeleteModalSubmitAction()} >بله</button>
+                        <button onClick={() => DeleteModalCancelAction()}>خیر</button>
+                    </>
+                </Modal>
+            }
+            {
+                showDetailsModal && <Modal unHide={DetailsModalHandler} >
+                    <>
+                        <table>
+                            <thead className='modal-head'>
+                                <th>قیمت</th>
+                                <th>میزان فروش</th>
+                                <th>موجودی</th>
+                            </thead>
+                            <tbody>
+                                <td>26,000</td>
+                                <td>بالا</td>
+                                <td>20</td>
+                            </tbody>
+                        </table>
+                    </>
+                </Modal>
             }
         </>
     )
