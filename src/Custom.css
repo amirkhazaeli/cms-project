@@ -1,0 +1,18 @@
+@import url('./Reset.css');
+
+@font-face {
+    font-family: Lalezar;
+    src: url('./Assets/Fonts/Lalezar.ttf');
+}
+:root{
+    --primary-color: #471AAA;
+    --white: #ffffff;
+    --white-50: #f0f0f0;
+}
+
+body{
+    background-color: var(--white-50);
+}
+*,body,html{
+    font-family: Lalezar;
+}

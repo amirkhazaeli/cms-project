@@ -1,8 +1,7 @@
-
 function App() {
   return (
    <>
-   <h1>Amir</h1>
+   <h1>امیر محمد</h1>
    </>
   );
 }
