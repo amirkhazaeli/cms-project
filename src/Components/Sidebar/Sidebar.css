@@ -5,6 +5,7 @@
     overflow: hidden;
     font-size: 1.3rem;
     flex: 1;
+
 }
 
 .sidebar-title {
@@ -18,7 +19,10 @@
     align-items: center;
     padding: 1rem;
 }
-
+.sidebar-list li a{
+    color: inherit;
+    text-decoration: none;
+}
 .sidebar-list li:hover {
     cursor: pointer;
 }

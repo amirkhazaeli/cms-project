@@ -1,10 +1,11 @@
 import React from 'react'
 import './Sidebar.css'
 import { AiOutlineHome } from 'react-icons/ai'
-import {MdProductionQuantityLimits} from 'react-icons/md'
-import {BiCommentDetail,BiBasket} from 'react-icons/bi'
-import {FiUsers} from 'react-icons/fi'
-import {BsCurrencyDollar} from 'react-icons/bs'
+import { MdProductionQuantityLimits } from 'react-icons/md'
+import { BiCommentDetail, BiBasket } from 'react-icons/bi'
+import { FiUsers } from 'react-icons/fi'
+import { BsCurrencyDollar } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 
 export default function Sidebar() {
     return (
@@ -13,31 +14,40 @@ export default function Sidebar() {
 
             <ul className='sidebar-list'>
                 <li>
-                    <AiOutlineHome />
-                    <span>صفحه اصلی</span>
+                    <Link to='/'>
+                        <AiOutlineHome />
+                        <span>صفحه اصلی</span>
+                    </Link>
                 </li>
                 <li className='active'>
-                    <MdProductionQuantityLimits />
-                    <span>محصولات</span>
+                    <Link to='/product'>
+                        <MdProductionQuantityLimits />
+                        <span>محصولات</span>
+                    </Link>
                 </li>
                 <li>
-                    <BiCommentDetail />
-                    <span>کامنت ها</span>
-
+                    <Link to='/comments'>
+                        <BiCommentDetail />
+                        <span>کامنت ها</span>
+                    </Link>
                 </li>
                 <li>
-                    <FiUsers />
-                    <span>کاربران</span>
-
+                    <Link to='/users' >
+                        <FiUsers />
+                        <span>کاربران</span>
+                    </Link>
                 </li>
                 <li>
-                    <BiBasket />
-                    <span>سفارشات</span>
+                    <Link to='/order'>
+                        <BiBasket />
+                        <span>سفارشات</span>
+                    </Link>
                 </li>
                 <li>
-                    <BsCurrencyDollar />
-                    <span>تخفیف ها</span>
-
+                    <Link to='/offs'>
+                        <BsCurrencyDollar />
+                        <span>تخفیف ها</span>
+                    </Link>
                 </li>
             </ul>
         </div>
