@@ -1,0 +1,29 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 5rem;
+    text-align: center;
+    border-radius: .5rem;
+}
+.modal-content button{
+    padding: .5rem 2rem;
+    margin-top: 3rem;
+    margin-left: .5rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: .5rem;
+    font-size: 1.5rem;
+}
