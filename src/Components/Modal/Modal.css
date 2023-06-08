@@ -31,3 +31,18 @@ table .modal-head th{
   padding: 0 2rem;
   padding-bottom: 2rem;
 }
+/* Start Edit Modal Styles */
+.edit-modal-inputs{
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+.edit-modal-inputs input{
+    font-size: 1.3rem;
+    padding: .8rem 1rem;
+    background-color: rgb(238, 238, 238);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: .5rem;
+    border: none;
+}

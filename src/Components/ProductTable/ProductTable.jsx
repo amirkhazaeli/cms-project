@@ -6,6 +6,8 @@ export default function ProductTable() {
 
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showDetailsModal, setShoeDetailsModal] = useState(false)
+    const[showEditModal,setShowEditModal] = useState(false)
+
     const DeleteModalSubmitAction = () => {
         setShowDeleteModal(false);
     };
@@ -15,6 +17,12 @@ export default function ProductTable() {
     };
     const DetailsModalHandler = () => {
         setShoeDetailsModal(false)
+    }
+    const EditModalSubmitAction = () => {
+        setShowEditModal(false)
+    }
+    const EditModalCloseAction = () => {
+        setShowEditModal(false)
     }
     return (
         <>
@@ -40,7 +48,7 @@ export default function ProductTable() {
                             <td>
                                 <button className='table-product-btn' onClick={() => setShoeDetailsModal(true)}>جزییات</button>
                                 <button className='table-product-btn' onClick={() => setShowDeleteModal(true)}>حذف</button>
-                                <button className='table-product-btn'>ویرایش</button>
+                                <button className='table-product-btn' onClick={()=> setShowEditModal(true)}>ویرایش</button>
                             </td>
                         </tr>
                     </tbody>
@@ -49,7 +57,7 @@ export default function ProductTable() {
 
             </div>
             {
-                showDeleteModal && <Modal>
+                showDeleteModal && <Modal DeleteModaClose={DeleteModalCancelAction}>
                     <>
                         <h1 className='modal-title'>ایا از حذف اطمینان داری؟</h1>
                         <button onClick={() => DeleteModalSubmitAction()} >بله</button>
@@ -58,7 +66,7 @@ export default function ProductTable() {
                 </Modal>
             }
             {
-                showDetailsModal && <Modal unHide={DetailsModalHandler} >
+                showDetailsModal && <Modal closeDetailModal={DetailsModalHandler} >
                     <>
                         <table>
                             <thead className='modal-head'>
@@ -73,6 +81,17 @@ export default function ProductTable() {
                             </tbody>
                         </table>
                     </>
+                </Modal>
+            }
+            {
+                showEditModal && <Modal EditModalClose={EditModalCloseAction}>
+                    <h1>اطلاعات جدید را وارد نمایید</h1>
+                    <div className='edit-modal-inputs'>
+                        <input type="text" placeholder='عنوان جدید را وارد کنید'/>
+                        <input type="text" placeholder='قیمت جدید را وارد کنید'/>
+                        <input type="text" placeholder='موجودی محصول را وارد کنید'/>
+                    </div>
+                    <button onClick={EditModalSubmitAction}>ثبت اطلاعات جدید</button>
                 </Modal>
             }
         </>
