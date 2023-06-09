@@ -6,48 +6,9 @@
     background-color: var(--white);
     margin-bottom: 2rem;
 }
-table {
-    border-collapse: collapse;
-    width: 100%;
-   
-}
-tr{
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    
-}
 tr.product-item img{
-   width: 120px;
+    width: 120px;
 }
 tr.product-item{
     margin-top: 2rem;
-}
-td , th{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-   
-}
-.table-product-btn {
-    background-color: var(--primary-color);
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 14px;
-    margin-right: 5px;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: .5rem;
-}
-
-.table-product-btn:hover {
-    background-color: rgb(10, 19, 107);
-}
-
-.price{
-    color: red;
 }

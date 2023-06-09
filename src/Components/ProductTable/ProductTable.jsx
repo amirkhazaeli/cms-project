@@ -79,12 +79,12 @@ export default function ProductTable({getAllProduct,allProduct}) {
                                             <td>{product.price}</td>
                                             <td>{product.count}</td>
                                             <td>
-                                                <button className='table-product-btn' onClick={() => {
+                                                <button className='table-btn' onClick={() => {
                                                     setShowDeleteModal(true)
                                                     setSelectProductId(product.id)
                                                 }}
                                                 >حذف</button>
-                                                <button className='table-product-btn' onClick={() => {
+                                                <button className='table-btn' onClick={() => {
                                                     setShowEditModal(true)
                                                     setSelectProductId(product.id)
                                                     setNewProductCount(product.count)

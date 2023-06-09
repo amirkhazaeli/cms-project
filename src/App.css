@@ -5,3 +5,39 @@
     flex: 6;
     padding: 0 1rem;
 }
+/* Styling of all project tables */
+table {
+    border-collapse: collapse;
+    width: 100%;
+   
+}
+tr{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    
+}
+td , th{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.table-btn {
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 5px;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: .5rem;
+}
+
+.table-btn:hover {
+    background-color: rgb(10, 19, 107);
+}
+
