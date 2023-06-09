@@ -1,61 +1,114 @@
+import axios from 'axios';
 import React, { useState } from 'react'
+
+import ErrorBox from '../ErrorBox/ErrorBox';
 import Modal from '../Modal/Modal';
 import './ProductTable.css'
 
-export default function ProductTable() {
-
+export default function ProductTable({getAllProduct,allProduct}) {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [showDetailsModal, setShoeDetailsModal] = useState(false)
-    const[showEditModal,setShowEditModal] = useState(false)
+    const [showEditModal, setShowEditModal] = useState(false)
+    const [selectProductId, setSelectProductId] = useState(null)
+
+    const [newProductTitle, setNewProductTitle] = useState('')
+    const [newProductPrice, setNewProductPrice] = useState()
+    const [newProductCount, setNewProductCount] = useState()
+    const [newProductImg, setNewProductImg] = useState('')
+    const [newProductPopularity, setNewProductPopularity] = useState()
+    const [newProductSale, setNewProductSale] = useState()
+    const [newProductColors, setNewProductColors] = useState()
+
+    const editProductObj = {
+        title: newProductTitle,
+        price: newProductPrice,
+        count: newProductCount,
+        img: newProductImg,
+        popularity: newProductPopularity,
+        sale: newProductSale,
+        colors: newProductColors
+    }
+
 
     const DeleteModalSubmitAction = () => {
-        setShowDeleteModal(false);
-    };
+        axios.delete(`http://localhost:3000/api/products/${selectProductId}`)
+            .then(res => {
+                console.log(res)
+                setShowDeleteModal(false)
+                getAllProduct()
+            }
 
+            )
+    };
     const DeleteModalCancelAction = () => {
         setShowDeleteModal(false);
     };
-    const DetailsModalHandler = () => {
-        setShoeDetailsModal(false)
-    }
     const EditModalSubmitAction = () => {
+        axios.put(`http://localhost:3000/api/products/${selectProductId}`, editProductObj).then((res) => {
+            console.log(res)
+            getAllProduct()
+        })
         setShowEditModal(false)
-    }
+    };
     const EditModalCloseAction = () => {
         setShowEditModal(false)
-    }
+    };
+
     return (
         <>
-            <div className='product-table'>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>عکس محصول</th>
-                            <th>نام محصول</th>
-                            <th>قیمت محصول</th>
-                            <th>موجودی</th>
-                            <th>عملیات</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr className='product-item'>
-                            <td>
-                                <img src={require('../../Assets/images/product/product1.jpeg')} alt="" />
-                            </td>
-                            <td>ساعت هوشمند</td>
-                            <td>26,000 تومان</td>
-                            <td>20</td>
-                            <td>
-                                <button className='table-product-btn' onClick={() => setShoeDetailsModal(true)}>جزییات</button>
-                                <button className='table-product-btn' onClick={() => setShowDeleteModal(true)}>حذف</button>
-                                <button className='table-product-btn' onClick={()=> setShowEditModal(true)}>ویرایش</button>
-                            </td>
-                        </tr>
-                    </tbody>
+            {
+                allProduct.length ? (
+                    <div className='product-table'>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>عکس </th>
+                                    <th>نام </th>
+                                    <th>قیمت </th>
+                                    <th>موجودی</th>
+                                    <th>عملیات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    allProduct.map((product) => (
+                                        <tr className='product-item'>
+                                            <td>
+                                                <img src={require('../../Assets/images/product/product1.jpeg')} alt="img" />
+                                            </td>
+                                            <td>{product.title}</td>
+                                            <td>{product.price}</td>
+                                            <td>{product.count}</td>
+                                            <td>
+                                                <button className='table-product-btn' onClick={() => {
+                                                    setShowDeleteModal(true)
+                                                    setSelectProductId(product.id)
+                                                }}
+                                                >حذف</button>
+                                                <button className='table-product-btn' onClick={() => {
+                                                    setShowEditModal(true)
+                                                    setSelectProductId(product.id)
+                                                    setNewProductCount(product.count)
+                                                    setNewProductPrice(product.price)
+                                                    setNewProductTitle(product.title)
+                                                    setNewProductImg(product.img)
+                                                    setNewProductPopularity(product.popularity)
+                                                    setNewProductSale(product.sale)
+                                                    setNewProductColors(product.color)
+                                                }}>ویرایش</button>
+                                            </td>
+                                        </tr>
+                                    ))
+                                }
 
-                </table>
+                            </tbody>
 
-            </div>
+                        </table>
+
+                    </div>
+                ) : (
+                    <ErrorBox msg='هیچ محصولی یافت نشد' />
+                )
+            }
             {
                 showDeleteModal && <Modal DeleteModaClose={DeleteModalCancelAction}>
                     <>
@@ -66,30 +119,16 @@ export default function ProductTable() {
                 </Modal>
             }
             {
-                showDetailsModal && <Modal closeDetailModal={DetailsModalHandler} >
-                    <>
-                        <table>
-                            <thead className='modal-head'>
-                                <th>قیمت</th>
-                                <th>میزان فروش</th>
-                                <th>موجودی</th>
-                            </thead>
-                            <tbody>
-                                <td>26,000</td>
-                                <td>بالا</td>
-                                <td>20</td>
-                            </tbody>
-                        </table>
-                    </>
-                </Modal>
-            }
-            {
                 showEditModal && <Modal EditModalClose={EditModalCloseAction}>
                     <h1>اطلاعات جدید را وارد نمایید</h1>
                     <div className='edit-modal-inputs'>
-                        <input type="text" placeholder='عنوان جدید را وارد کنید'/>
-                        <input type="text" placeholder='قیمت جدید را وارد کنید'/>
-                        <input type="text" placeholder='موجودی محصول را وارد کنید'/>
+                        <input type="text" placeholder='عنوان جدید را وارد کنید' value={newProductTitle} onChange={(e) => setNewProductTitle(e.target.value)} />
+                        <input type="text" placeholder='قیمت جدید را وارد کنید' value={newProductPrice} onClick={(e) => setNewProductPrice(e.target.value)} />
+                        <input type="text" placeholder='موجودی محصول را وارد کنید' value={newProductCount} onChange={(e) => setNewProductCount(e.target.value)} />
+                        <input type="text" placeholder='عکس محصول را وارد کنید' value={newProductImg} onChange={(e) => setNewProductImg(e.target.value)} />
+                        <input type="text" placeholder='محبوبیت محصول را وارد کنید' value={newProductPopularity} onChange={(e) => setNewProductPopularity(e.target.value)} />
+                        <input type="text" placeholder='میزان فروش محصول را وارد کنید' value={newProductSale} onChange={(e) => setNewProductSale(e.target.value)} />
+                        <input type="text" placeholder='تعداد رنگ محصول را وارد کنید' value={newProductColors} onChange={(e) => setNewProductColors(e.target.value)} />
                     </div>
                     <button onClick={EditModalSubmitAction}>ثبت اطلاعات جدید</button>
                 </Modal>

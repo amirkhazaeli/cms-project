@@ -34,7 +34,7 @@
 .header-left-section .search-box {
     width: 400px;
     background-color: white;
-    border-radius: 1rem;
+    border-radius: .5rem;
     display: flex;
     justify-content: space-between;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -54,7 +54,7 @@
     background-color: var(--primary-color);
     border: none;
     color: var(--white);
-    border-radius: 1rem;
+    border-radius: .5rem;
 }
 
 .header-left-section .search-box button:hover {

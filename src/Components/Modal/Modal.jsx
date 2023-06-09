@@ -2,14 +2,12 @@ import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom';
 import './Modal.css'
 
-export default function Modal({ children,DeleteModaClose, closeDetailModal, EditModalClose }) {
+export default function Modal({ children,DeleteModaClose, EditModalClose }) {
   console.log("test");
   useEffect(() => {
     const eventHandler = (e) => {
       if (e.target.className === 'modal') {
-        if (closeDetailModal) { // DetailModal Close Handler
-         closeDetailModal()
-        }else if(EditModalClose){ // EditModal Close Handler
+       if(EditModalClose){ // EditModal Close Handler
           EditModalClose()
         }else if(DeleteModaClose){// DeleteModal Close Handler
           DeleteModaClose()

@@ -1,9 +1,13 @@
 .add-Product{
     margin-top: 2rem;
+    padding: 1.5rem ;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    background-color: var(--white);
+    border-radius: 1rem;
 }
 .add-new-product-title{
     font-size: 2rem;
-    margin-right: .5rem;
+    margin-right: 1rem;
 }
 .add-Product form{
     margin-top: 1.5rem;
@@ -31,6 +35,9 @@
    width: 100%;
    padding: .5rem;
    font-size: 1.2rem;
+}
+.add-new-product-group svg{
+    color: gray;
 }
 .add-new-product-btn{
     background-color: var(--primary-color);

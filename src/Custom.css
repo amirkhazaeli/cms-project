@@ -4,16 +4,39 @@
     font-family: Lalezar;
     src: url('./Assets/Fonts/Lalezar.ttf');
 }
-:root{
+
+:root {
     --primary-color: #471AAA;
     --white: #ffffff;
     --white-50: #f0f0f0;
 }
 
-body{
+body {
     background-color: var(--white-50);
     direction: rtl;
 }
-*,body,html{
+
+*,
+body,
+html {
     font-family: Lalezar;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

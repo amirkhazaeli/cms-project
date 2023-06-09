@@ -1,4 +1,6 @@
 .sidebar {
+    position: sticky;
+    top: 0;
     background-color: var(--primary-color);
     color: var(--white);
     height: 100vh;
@@ -9,6 +11,7 @@
 }
 
 .sidebar-title {
+    margin-top: .7rem;
     padding: 1rem;
     border-bottom: 1px solid rgba(250, 250, 250, 0.4);
 }
@@ -38,5 +41,7 @@
 }
 
 .sidebar-list li.active {
-    background-color: rgb(10, 19, 107);
+    background-color: var(--white-50);
+    color: var(--primary-color);
+    border-radius: .2rem;
 }
