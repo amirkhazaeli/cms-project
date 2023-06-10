@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom';
 import './Modal.css'
 
-export default function Modal({ children,DeleteModaClose, EditModalClose,CommentModalClose,RemoveCommentModalClose,EditCommentModalClose }) {
+export default function Modal({ children,DeleteModaClose, EditModalClose,CommentModalClose,RemoveCommentModalClose,EditCommentModalClose,ReplayCommentModalClose }) {
   console.log("test");
   useEffect(() => {
     const eventHandler = (e) => {
@@ -11,12 +11,14 @@ export default function Modal({ children,DeleteModaClose, EditModalClose,Comment
           EditModalClose()
         }else if(DeleteModaClose){// DeleteModal Close Handler
           DeleteModaClose()
-        }else if(CommentModalClose){
+        }else if(CommentModalClose){// DeleteModal Close Handler
           CommentModalClose()
-        }else if(RemoveCommentModalClose){
+        }else if(RemoveCommentModalClose){// RemoveCommentModal Close Handler
           RemoveCommentModalClose()
-        }else if(EditCommentModalClose){
+        }else if(EditCommentModalClose){// EditCommentModal Close Handler
           EditCommentModalClose()
+        }else if(ReplayCommentModalClose){// ReplayCommentModal Close Handler
+          ReplayCommentModalClose()
         }
       }
 

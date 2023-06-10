@@ -9,7 +9,8 @@ import Modal from '../Modal/Modal'
 export default function Comments() {
   const [showCommentModal, setShowCommentModal] = useState(false)
   const [showRemoveCommentModal, setShowRemoveCommentModal] = useState(false)
-  const [showEditCommentModal,setShowEditCommentModal] = useState(false)
+  const [showEditCommentModal, setShowEditCommentModal] = useState(false)
+  const [showReplayCommentModal, setReplayCommentModal] = useState(false)
   const [allComments, setAllComments] = useState([])
   const [selectComment, setSelectComment] = useState()
   useEffect(() => {
@@ -37,6 +38,12 @@ export default function Comments() {
   }
   const EditComponentModalSubmitHandler = () => {
     setShowEditCommentModal(false)
+  }
+  const ReplayCommentModalCloseHandler = () => {
+    setReplayCommentModal(false)
+  }
+  const ReplayCommentModalSubmitHandler = () => {
+    setReplayCommentModal(false)
   }
   return (
     <div className='comments-section'>
@@ -77,9 +84,9 @@ export default function Comments() {
                     {comment.hour}
                   </td>
                   <td>
-                    <button className='table-btn' onClick={() => {setShowRemoveCommentModal(true) }}>حذف</button>
-                    <button className='table-btn' onClick={() => {setShowEditCommentModal(true)}}>ویرایش</button>
-                    <button className='table-btn' onClick={() => { }}>پاسخ</button>
+                    <button className='table-btn' onClick={() => { setShowRemoveCommentModal(true) }}>حذف</button>
+                    <button className='table-btn' onClick={() => { setShowEditCommentModal(true) }}>ویرایش</button>
+                    <button className='table-btn' onClick={() => { setReplayCommentModal(true)}}>پاسخ</button>
                   </td>
                 </tr>
               ))
@@ -101,7 +108,7 @@ export default function Comments() {
       }
       {
         showRemoveCommentModal ? (
-          <Modal  RemoveCommentModalClose={RemoveCommentModalCloseHandler}>
+          <Modal RemoveCommentModalClose={RemoveCommentModalCloseHandler}>
             <>
               <h1 className='modal-title'>ایا از حذف اطمینان داری؟</h1>
               <button onClick={RemoveCommentModalCloseHandler}>بله</button>
@@ -111,19 +118,28 @@ export default function Comments() {
         ) : null
       }
       {
-         showEditCommentModal ? (
+        showEditCommentModal ? (
           <Modal EditCommentModalClose={EditComponentModalCloseHandler}>
             <h1>متن جدید را وارد کنید</h1>
             <div className='edit-comment'>
-            <textarea>
-            </textarea>
-            <button onClick={EditComponentModalSubmitHandler}>تایید</button>
+              <textarea>
+              </textarea>
+              <button onClick={EditComponentModalSubmitHandler}>تایید</button>
             </div>
           </Modal>
-         ) : null
+        ) : null
       }
       {
-
+        showReplayCommentModal ? (
+          <Modal ReplayCommentModalClose={ReplayCommentModalCloseHandler}>
+                    <h1>پاسخ را ارسال کنید</h1>
+            <div className='edit-comment'>
+              <textarea>
+              </textarea>
+              <button onClick={ReplayCommentModalSubmitHandler}>ارسال</button>
+            </div>
+          </Modal>
+        ) : null
       }
     </div>
   )
