@@ -2,7 +2,19 @@ import React from 'react'
 import './Header.css'
 import { BsSun } from 'react-icons/bs'
 import { IoIosNotificationsOutline } from 'react-icons/io'
+import { useState } from 'react'
+import { useEffect } from 'react'
 export default function Header() {
+    const [isDarkMode,setIsDarkMode] = useState(false)
+
+    useEffect(()=>{
+        if(isDarkMode){
+          document.body.classList.add('dark-mode')
+        }else{
+            document.body.classList.remove('dark-mode')
+        }
+    },[isDarkMode])
+
     return (
         <div className='header'>
             <div className='admin-profile'>
@@ -20,7 +32,7 @@ export default function Header() {
                 <div className='icon'>
                     <IoIosNotificationsOutline />
                 </div>
-                <div className='icon'>
+                <div className='icon' onClick={()=> setIsDarkMode(!isDarkMode)}>
                     <BsSun />
                 </div>
             </div>

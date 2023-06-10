@@ -9,13 +9,18 @@
     --primary-color: #471AAA;
     --white: #ffffff;
     --white-50: #f0f0f0;
+    --black: #000000;
 }
 
 body {
     background-color: var(--white-50);
     direction: rtl;
 }
-
+body.dark-mode{
+    --white: rgb(70, 70, 70);
+    --white-50: gray;
+    --black: #ffffff;
+}
 *,
 body,
 html {

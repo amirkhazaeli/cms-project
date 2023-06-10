@@ -6,6 +6,7 @@
     border-radius: 1rem;
 }
 .comment-title{
+    color: var(--black);
     font-size: 1.5rem;
     margin-bottom: 4rem;
     display: flex;

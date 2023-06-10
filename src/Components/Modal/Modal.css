@@ -46,6 +46,12 @@ table .modal-head th{
     border-radius: .5rem;
     border: none;
 }
+.modal-alert{
+    position: absolute;
+    top: 2rem;
+    right: 1rem;
+    width: 20%;
+}
 /* comment component Modal */
 .edit-comment{
     margin-top: 2rem;

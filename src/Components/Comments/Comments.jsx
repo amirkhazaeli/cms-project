@@ -4,6 +4,7 @@ import { AiOutlineComment } from 'react-icons/ai'
 import { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
+
 import ErrorBox from '../ErrorBox/ErrorBox'
 import Modal from '../Modal/Modal'
 export default function Comments() {
@@ -13,13 +14,15 @@ export default function Comments() {
   const [showReplayCommentModal, setReplayCommentModal] = useState(false)
   const [allComments, setAllComments] = useState([])
   const [selectComment, setSelectComment] = useState()
+  const [editCommentValue, setEditCommentValue] = useState('')
+  const [replayCommentValue , setReplayCommentValue] = useState('')
+  const [isshowErrorAlertBox, setIsShoweErrorAlertBox] = useState(false)
   useEffect(() => {
     getAllComments()
   }, [])
 
   const getAllComments = () => {
     axios.get('http://localhost:3000/api/comments/').then((res) => {
-      console.log(res.data);
       setAllComments(res.data)
     })
   }
@@ -30,20 +33,46 @@ export default function Comments() {
   const RemoveCommentModalCloseHandler = () => {
     setShowRemoveCommentModal(false)
   }
-  const RemoveCommentModalSubmitHandler = () => {
-    setShowRemoveCommentModal(false)
+  const RemoveCommentModalSubmitHandler = () => { // Delete Comment from DataBase
+    axios.delete(`http://localhost:3000/api/comments/${selectComment.id}`).then((res) => {
+      console.log(res)
+      setShowRemoveCommentModal(false)
+    }).catch((err) => console.log(err))
   }
   const EditComponentModalCloseHandler = () => {
     setShowEditCommentModal(false)
   }
-  const EditComponentModalSubmitHandler = () => {
-    setShowEditCommentModal(false)
+  const EditComponentModalSubmitHandler = () => { // Edit Comment Text from DataBase
+    if (editCommentValue.length) {
+      axios.put(`http://localhost:3000/api/comments/${selectComment.id}`, {
+        body: editCommentValue
+      }).then(() => {
+        setShowEditCommentModal(false);
+        getAllComments()
+      }).catch((err) => {
+        console.log(err);
+      })
+    } else {
+      setIsShoweErrorAlertBox(true)
+      setTimeout(()=>{
+        setIsShoweErrorAlertBox(false)
+      },2000)
+    }
+
   }
   const ReplayCommentModalCloseHandler = () => {
     setReplayCommentModal(false)
   }
   const ReplayCommentModalSubmitHandler = () => {
-    setReplayCommentModal(false)
+    if(replayCommentValue.length){
+      setReplayCommentModal(false)
+    }else{
+      setIsShoweErrorAlertBox(true)
+      setTimeout(()=>{
+        setIsShoweErrorAlertBox(false)
+      },2000)
+    }
+    
   }
   return (
     <div className='comments-section'>
@@ -84,9 +113,16 @@ export default function Comments() {
                     {comment.hour}
                   </td>
                   <td>
-                    <button className='table-btn' onClick={() => { setShowRemoveCommentModal(true) }}>حذف</button>
-                    <button className='table-btn' onClick={() => { setShowEditCommentModal(true) }}>ویرایش</button>
-                    <button className='table-btn' onClick={() => { setReplayCommentModal(true)}}>پاسخ</button>
+                    <button className='table-btn' onClick={() => {
+                      setShowRemoveCommentModal(true)
+                      setSelectComment(comment)
+                    }}>حذف</button>
+                    <button className='table-btn' onClick={() => {
+                      setShowEditCommentModal(true)
+                      setSelectComment(comment)
+                    }}>ویرایش</button>
+                    <button className='table-btn' onClick={() => { setReplayCommentModal(true) 
+                      setSelectComment(comment)}}>پاسخ</button>
                   </td>
                 </tr>
               ))
@@ -111,30 +147,33 @@ export default function Comments() {
           <Modal RemoveCommentModalClose={RemoveCommentModalCloseHandler}>
             <>
               <h1 className='modal-title'>ایا از حذف اطمینان داری؟</h1>
-              <button onClick={RemoveCommentModalCloseHandler}>بله</button>
-              <button onClick={RemoveCommentModalSubmitHandler}>خیر</button>
+              <button onClick={RemoveCommentModalSubmitHandler}>بله</button>
+              <button onClick={RemoveCommentModalCloseHandler}>خیر</button>
             </>
           </Modal>
         ) : null
       }
       {
         showEditCommentModal ? (
-          <Modal EditCommentModalClose={EditComponentModalCloseHandler}>
-            <h1>متن جدید را وارد کنید</h1>
-            <div className='edit-comment'>
-              <textarea>
-              </textarea>
-              <button onClick={EditComponentModalSubmitHandler}>تایید</button>
-            </div>
-          </Modal>
+          <>
+            <Modal EditCommentModalClose={EditComponentModalCloseHandler} isshowErrorAlertBox={isshowErrorAlertBox}>
+              <h1>متن جدید را وارد کنید</h1>
+              <div className='edit-comment'>
+                <textarea value={editCommentValue} onChange={(e) => setEditCommentValue(e.target.value)}>
+                </textarea>
+                <button onClick={EditComponentModalSubmitHandler}>تایید</button>
+              </div>
+            </Modal>
+          </>
+
         ) : null
       }
       {
         showReplayCommentModal ? (
-          <Modal ReplayCommentModalClose={ReplayCommentModalCloseHandler}>
-                    <h1>پاسخ را ارسال کنید</h1>
+          <Modal ReplayCommentModalClose={ReplayCommentModalCloseHandler} isshowErrorAlertBox={isshowErrorAlertBox}>
+            <h1>پاسخ را ارسال کنید</h1>
             <div className='edit-comment'>
-              <textarea>
+              <textarea value={replayCommentValue} onChange={(e)=> setReplayCommentValue(e.target.value)}>
               </textarea>
               <button onClick={ReplayCommentModalSubmitHandler}>ارسال</button>
             </div>

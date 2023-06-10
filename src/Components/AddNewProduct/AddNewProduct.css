@@ -8,6 +8,7 @@
 .add-new-product-title{
     font-size: 1.5rem;
     margin-right: 1.2rem;
+    color: var(--black);
 }
 .add-Product form{
     margin-top: 1.5rem;
@@ -29,6 +30,7 @@
     padding-right: .5rem;
 }
 .add-new-product-group input{
+   color: var(--black);
    outline: none;
    border: none;
    background: unset;
@@ -36,12 +38,16 @@
    padding: .5rem;
    font-size: 1.2rem;
 }
+.add-new-product-group input::placeholder{
+    color: var(--black);
+    opacity: .7;
+}
 .add-new-product-group svg{
-    color: gray;
+    color: var(--black);
 }
 .add-new-product-btn{
     background-color: var(--primary-color);
-    color: var(--white);
+    color: white;
     border: none;
     border-radius: .5rem;
     font-size: 1.2rem;
