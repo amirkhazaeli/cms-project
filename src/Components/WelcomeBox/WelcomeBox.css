@@ -6,6 +6,7 @@
     flex: 1;
     display: flex;
     align-items: center;
+    justify-content: space-around;
 }
 .right-section{
     padding: 0 2rem;
