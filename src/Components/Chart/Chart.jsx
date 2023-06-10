@@ -10,7 +10,7 @@ export default function Chart() {
             <AiOutlineLineChart />
             نمودار فروش
             </h1>
-            <BarChart width={630} height={350} data={ChartData}>
+            <BarChart width={830} height={350} data={ChartData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
                 <YAxis />
