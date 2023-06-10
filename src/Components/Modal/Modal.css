@@ -46,3 +46,13 @@ table .modal-head th{
     border-radius: .5rem;
     border: none;
 }
+/* comment component Modal */
+.edit-comment{
+    margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.edit-comment textarea{
+    font-size: 1.2rem;
+ 
+}

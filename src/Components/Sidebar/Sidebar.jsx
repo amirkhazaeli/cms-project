@@ -5,49 +5,52 @@ import { MdProductionQuantityLimits } from 'react-icons/md'
 import { BiCommentDetail, BiBasket } from 'react-icons/bi'
 import { FiUsers } from 'react-icons/fi'
 import { BsCurrencyDollar } from 'react-icons/bs'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 export default function Sidebar() {
+    const activeClassHandler = (event) =>{
+       console.log(event.target);
+    }
     return (
         <div className='sidebar'>
             <h1 className='sidebar-title'>به داشبورد خود خوش آمدید</h1>
 
-            <ul className='sidebar-list'>
+            <ul className='sidebar-list' onClick={(event) => activeClassHandler(event)}>
                 <li>
-                    <Link to='/'>
-                        <AiOutlineHome />
+                    <NavLink to='/'>
+                      <AiOutlineHome />
                         <span>صفحه اصلی</span>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li className='active'>
-                    <Link to='/product'>
+                    <NavLink to='/product'>
                         <MdProductionQuantityLimits />
                         <span>محصولات</span>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to='/comments'>
+                    <NavLink to='/comments'>
                         <BiCommentDetail />
                         <span>کامنت ها</span>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to='/users' >
+                    <NavLink to='/users' >
                         <FiUsers />
                         <span>کاربران</span>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to='/order'>
+                    <NavLink to='/order'>
                         <BiBasket />
                         <span>سفارشات</span>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to='/offs'>
+                    <NavLink to='/offs'>
                         <BsCurrencyDollar />
                         <span>تخفیف ها</span>
-                    </Link>
+                    </NavLink>
                 </li>
             </ul>
         </div>
