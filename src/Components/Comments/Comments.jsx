@@ -1,5 +1,4 @@
 import React from 'react'
-import './Comments.css'
 import { AiOutlineComment } from 'react-icons/ai'
 import { useEffect } from 'react'
 import axios from 'axios'
@@ -75,8 +74,8 @@ export default function Comments() {
     
   }
   return (
-    <div className='comments-section'>
-      <h1 className='comment-title'>
+    <div className='comments-section table-section'>
+      <h1 className='table-title'>
         <AiOutlineComment />
         کامنت های کاربران
 
@@ -97,7 +96,7 @@ export default function Comments() {
           {
             allComments.length ? (
               allComments.map((comment) => (
-                <tr className='comment-item'>
+                <tr className='table-item'>
                   <td>{comment.userID}</td>
                   <td>{comment.productID}</td>
                   <td>

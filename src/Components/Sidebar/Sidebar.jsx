@@ -46,12 +46,6 @@ export default function Sidebar() {
                         <span>سفارشات</span>
                     </NavLink>
                 </li>
-                <li>
-                    <NavLink to='/offs'>
-                        <BsCurrencyDollar />
-                        <span>تخفیف ها</span>
-                    </NavLink>
-                </li>
             </ul>
         </div>
     )
