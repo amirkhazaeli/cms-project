@@ -1,7 +1,7 @@
 .cms-error-box{
     text-align: center;
     background-color: rgb(243, 74, 74);
-    color: var(--white);
+    color: white;
     font-size: 2rem;
     padding: 2rem;
     border-radius: .5rem;

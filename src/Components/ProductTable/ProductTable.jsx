@@ -1,11 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-
 import ErrorBox from '../ErrorBox/ErrorBox';
 import Modal from '../Modal/Modal';
-import './ProductTable.css'
+import { MdProductionQuantityLimits } from 'react-icons/md'
 
-export default function ProductTable({getAllProduct,allProduct}) {
+export default function ProductTable({ getAllProduct, allProduct }) {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false)
     const [selectProductId, setSelectProductId] = useState(null)
@@ -57,7 +56,11 @@ export default function ProductTable({getAllProduct,allProduct}) {
         <>
             {
                 allProduct.length ? (
-                    <div className='product-table'>
+                    <div className='product-table table-section'>
+                        <h1 className='table-title'>
+                            <MdProductionQuantityLimits />
+                            محصولات
+                        </h1>
                         <table>
                             <thead>
                                 <tr>
@@ -71,7 +74,7 @@ export default function ProductTable({getAllProduct,allProduct}) {
                             <tbody>
                                 {
                                     allProduct.map((product) => (
-                                        <tr className='product-item'>
+                                        <tr className='table-item'>
                                             <td>
                                                 <img src={require('../../Assets/images/product/product1.jpeg')} alt="img" />
                                             </td>

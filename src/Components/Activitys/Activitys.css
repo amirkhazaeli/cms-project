@@ -14,6 +14,7 @@
     align-items: center;
     justify-content: center;
     column-gap: .5rem;
+    color: var(--black);
 }
 .activity-item{
     margin-top: 2rem;
@@ -31,11 +32,11 @@
 }
 .activity-item-title h3{
     margin-top: .5rem;
-    color: var(--primary-color);
+    color: green;
 }
 .activity-item-time{
     background-color: var(--white-50);
-    color: gray;
+    color: rgb(94, 89, 89);
     display: flex;
     align-items: center;
     padding: 1rem;

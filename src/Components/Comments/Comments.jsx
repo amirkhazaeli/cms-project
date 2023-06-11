@@ -132,7 +132,7 @@ export default function Comments() {
 
         </tbody>
       </table>
-      {/* Comment Modals */}
+      {/* Comment Page Modals */}
       {
         showCommentModal ? (
           <Modal CommentModalClose={commentModalCloseHandler}>

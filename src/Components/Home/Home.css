@@ -1,5 +1,6 @@
 .Home-section{
     margin-top: 2rem;
+    color: var(--black);
 }
 .top-section{
     display: flex;

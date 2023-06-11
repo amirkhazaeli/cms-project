@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import AddNewProduct from '../AddNewProduct/AddNewProduct'
 import ProductTable from '../ProductTable/ProductTable'
-import './Product.css'
+
 export default function Product() {
   const [allProduct, setallProduct] = useState([])
 

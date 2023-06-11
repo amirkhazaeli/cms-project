@@ -11,11 +11,14 @@
     align-items: center;
     column-gap: 1rem;
 }
-.admin-profile .admin-name{
+
+.admin-profile .admin-name {
     color: var(--black);
 }
+
 .admin-profile .admin-job {
-    color: rgb(145, 140, 140);
+    color: var(--black);
+    opacity: .6;
     margin-top: .5rem;
     font-size: 1rem;
 }
@@ -73,6 +76,52 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.header-left-section .notification-icon {
+    position: relative;
+}
+.notif-count{
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: red;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.header-left-section .notification-icon .notif-box {
+    background-color: var(--white);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    color: var(--black);
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    position: absolute;
+    z-index: 999;
+    left: .5rem;
+    top: 2.5rem;
+    width: 300px;
+}
+.header-left-section .notification-icon .notif-box .notif-item{
+    margin-top: 1rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: .5rem;
+    transition: all .3s ease-in;
+}
+.header-left-section .notification-icon .notif-box .notif-item .notif-item-date{
+    background-color: var(--white-50);
+    padding: .5rem;
+    border-radius: .5rem;
+}
 .header-left-section .icon:hover {
     cursor: pointer;
     background-color: rgb(10, 19, 107);

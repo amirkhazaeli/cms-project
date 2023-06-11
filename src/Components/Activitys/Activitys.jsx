@@ -1,11 +1,11 @@
 import React from 'react'
 import './Activitys.css'
-import { GrNotification } from 'react-icons/gr'
+import { IoMdNotificationsOutline } from 'react-icons/io'
 export default function Activitys() {
     return (
         <div className='activity-section'>
             <h1 className='activity-title'>
-                <GrNotification />
+                <IoMdNotificationsOutline />
                 فعالیت ها
             </h1>
             <div className='activity-item'>
