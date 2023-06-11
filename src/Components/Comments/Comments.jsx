@@ -3,9 +3,12 @@ import { AiOutlineComment } from 'react-icons/ai'
 import { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
-
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 import ErrorBox from '../ErrorBox/ErrorBox'
 import Modal from '../Modal/Modal'
+import pagination from '../../Assets/Utils/Pagination'
+
 export default function Comments() {
   const [showCommentModal, setShowCommentModal] = useState(false)
   const [showRemoveCommentModal, setShowRemoveCommentModal] = useState(false)
@@ -14,18 +17,25 @@ export default function Comments() {
   const [allComments, setAllComments] = useState([])
   const [selectComment, setSelectComment] = useState()
   const [editCommentValue, setEditCommentValue] = useState('')
-  const [replayCommentValue , setReplayCommentValue] = useState('')
+  const [replayCommentValue, setReplayCommentValue] = useState('')
   const [isshowErrorAlertBox, setIsShoweErrorAlertBox] = useState(false)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [showData, setShowData] = useState()
+  const pagesCount = Math.ceil(allComments.length / 10) 
   useEffect(() => {
     getAllComments()
+   
   }, [])
-
+  useEffect(() => {
+    setShowData(pagination(allComments, currentPage))
+  }, [allComments,currentPage])
+  
+  console.log(showData);
   const getAllComments = () => {
     axios.get('http://localhost:3000/api/comments/').then((res) => {
       setAllComments(res.data)
     })
   }
-
   const commentModalCloseHandler = () => {
     setShowCommentModal(false)
   }
@@ -53,9 +63,9 @@ export default function Comments() {
       })
     } else {
       setIsShoweErrorAlertBox(true)
-      setTimeout(()=>{
+      setTimeout(() => {
         setIsShoweErrorAlertBox(false)
-      },2000)
+      }, 2000)
     }
 
   }
@@ -63,15 +73,15 @@ export default function Comments() {
     setReplayCommentModal(false)
   }
   const ReplayCommentModalSubmitHandler = () => {
-    if(replayCommentValue.length){
+    if (replayCommentValue.length) {
       setReplayCommentModal(false)
-    }else{
+    } else {
       setIsShoweErrorAlertBox(true)
-      setTimeout(()=>{
+      setTimeout(() => {
         setIsShoweErrorAlertBox(false)
-      },2000)
+      }, 2000)
     }
-    
+
   }
   return (
     <div className='comments-section table-section'>
@@ -95,7 +105,7 @@ export default function Comments() {
         <tbody>
           {
             allComments.length ? (
-              allComments.map((comment) => (
+              showData[0].map((comment) => (
                 <tr className='table-item'>
                   <td>{comment.userID}</td>
                   <td>{comment.productID}</td>
@@ -120,8 +130,10 @@ export default function Comments() {
                       setShowEditCommentModal(true)
                       setSelectComment(comment)
                     }}>ویرایش</button>
-                    <button className='table-btn' onClick={() => { setReplayCommentModal(true) 
-                      setSelectComment(comment)}}>پاسخ</button>
+                    <button className='table-btn' onClick={() => {
+                      setReplayCommentModal(true)
+                      setSelectComment(comment)
+                    }}>پاسخ</button>
                   </td>
                 </tr>
               ))
@@ -132,6 +144,17 @@ export default function Comments() {
 
         </tbody>
       </table>
+      {
+        allComments.length > 5 ? (
+          <div className='pagination'>
+          <Stack spacing={2}>
+            <Pagination count={pagesCount} color="primary" />
+          </Stack>
+        </div>
+        ) : null
+      }
+
+
       {/* Comment Page Modals */}
       {
         showCommentModal ? (
@@ -172,7 +195,7 @@ export default function Comments() {
           <Modal ReplayCommentModalClose={ReplayCommentModalCloseHandler} isshowErrorAlertBox={isshowErrorAlertBox}>
             <h1>پاسخ را ارسال کنید</h1>
             <div className='edit-comment'>
-              <textarea value={replayCommentValue} onChange={(e)=> setReplayCommentValue(e.target.value)}>
+              <textarea value={replayCommentValue} onChange={(e) => setReplayCommentValue(e.target.value)}>
               </textarea>
               <button onClick={ReplayCommentModalSubmitHandler}>ارسال</button>
             </div>

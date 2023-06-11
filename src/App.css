@@ -66,3 +66,8 @@ tr.table-item{
     background-color: rgb(10, 19, 107);
 }
 
+.pagination{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}

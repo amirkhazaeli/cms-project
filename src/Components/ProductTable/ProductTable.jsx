@@ -1,14 +1,22 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import ErrorBox from '../ErrorBox/ErrorBox';
 import Modal from '../Modal/Modal';
 import { MdProductionQuantityLimits } from 'react-icons/md'
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import pagination from '../../Assets/Utils/Pagination';
 
 export default function ProductTable({ getAllProduct, allProduct }) {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false)
     const [selectProductId, setSelectProductId] = useState(null)
+    const [showData,setShowData] = useState([])
+    const [currentPage, setCurrentPage] = useState(1)
+    const pagesCount = Math.ceil(allProduct.length / 6)
 
+
+    // get Input value state
     const [newProductTitle, setNewProductTitle] = useState('')
     const [newProductPrice, setNewProductPrice] = useState()
     const [newProductCount, setNewProductCount] = useState()
@@ -16,7 +24,7 @@ export default function ProductTable({ getAllProduct, allProduct }) {
     const [newProductPopularity, setNewProductPopularity] = useState()
     const [newProductSale, setNewProductSale] = useState()
     const [newProductColors, setNewProductColors] = useState()
-
+   
     const editProductObj = {
         title: newProductTitle,
         price: newProductPrice,
@@ -27,6 +35,13 @@ export default function ProductTable({ getAllProduct, allProduct }) {
         colors: newProductColors
     }
 
+    useEffect(() => {
+        setShowData(pagination(allProduct, currentPage))
+    }, [allProduct, currentPage])
+
+    const handlePageChange = (event, value) => {
+        setCurrentPage(value)
+    }
 
     const DeleteModalSubmitAction = () => {
         axios.delete(`http://localhost:3000/api/products/${selectProductId}`)
@@ -73,7 +88,7 @@ export default function ProductTable({ getAllProduct, allProduct }) {
                             </thead>
                             <tbody>
                                 {
-                                    allProduct.map((product) => (
+                                    showData[0].map((product) => (
                                         <tr className='table-item'>
                                             <td>
                                                 <img src={require('../../Assets/images/product/product1.jpeg')} alt="img" />
@@ -104,9 +119,13 @@ export default function ProductTable({ getAllProduct, allProduct }) {
                                 }
 
                             </tbody>
-
                         </table>
 
+                        <div className='pagination'>
+                            <Stack spacing={2}>
+                                <Pagination count={pagesCount} onChange={handlePageChange} color="primary" />
+                            </Stack>
+                        </div>
                     </div>
                 ) : (
                     <ErrorBox msg='هیچ محصولی یافت نشد' />
