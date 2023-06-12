@@ -132,7 +132,7 @@ export default function ProductTable({ getAllProduct, allProduct }) {
                 )
             }
             {
-                showDeleteModal && <Modal DeleteModaClose={DeleteModalCancelAction}>
+                showDeleteModal && <Modal modalClose={DeleteModalCancelAction}>
                     <>
                         <h1 className='modal-title'>ایا از حذف اطمینان داری؟</h1>
                         <button onClick={() => DeleteModalSubmitAction()} >بله</button>
@@ -141,7 +141,7 @@ export default function ProductTable({ getAllProduct, allProduct }) {
                 </Modal>
             }
             {
-                showEditModal && <Modal EditModalClose={EditModalCloseAction}>
+                showEditModal && <Modal modalClose={EditModalCloseAction}>
                     <h1>اطلاعات جدید را وارد نمایید</h1>
                     <div className='edit-modal-inputs'>
                         <input type="text" placeholder='عنوان جدید را وارد کنید' value={newProductTitle} onChange={(e) => setNewProductTitle(e.target.value)} />

@@ -48,3 +48,6 @@
     margin-bottom: 1rem;
     font-size: 1.4rem;
 }
+.sidebar-list li:last-child a{
+    color: rgb(236, 74, 74);
+}

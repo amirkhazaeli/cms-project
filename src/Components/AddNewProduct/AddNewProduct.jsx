@@ -8,7 +8,9 @@ import { HiOutlineColorSwatch } from 'react-icons/hi'
 import { FaRoute } from 'react-icons/fa'
 import { useState } from 'react'
 import axios from 'axios'
-
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Stack from '@mui/material/Stack';
 export default function AddNewProduct({ getAllProduct }) {
     const [newProductTitle, setNewProductTitle] = useState('')
     const [newProductPrice, setNewProductPrice] = useState()
@@ -17,7 +19,8 @@ export default function AddNewProduct({ getAllProduct }) {
     const [newProductPopularity, setNewProductPopularity] = useState()
     const [newProductSale, setNewProductSale] = useState()
     const [newProductColors, setNewProductColors] = useState()
-
+    const [showErrorAlert, setShowErrorAlert] = useState(false)
+    const regex = /^\S+$/;
     const newProductObj = {
         title: newProductTitle,
         price: newProductPrice,
@@ -30,11 +33,20 @@ export default function AddNewProduct({ getAllProduct }) {
 
     const addNewProductHandler = (event) => {
         event.preventDefault()
-        axios.post('http://localhost:3000/api/products', newProductObj).then((res) => {
-            console.log(res.data)
-            getAllProduct()
-            emptyInputes()
-        })
+        if (regex.test(newProductTitle) && regex.test(newProductPrice) && regex.test(newProductCount) && regex.test(newProductCount) && regex.test(newProductImg) && regex.test(newProductPopularity) && regex.test(newProductSale) && regex.test(newProductColors)) {
+
+            axios.post('http://localhost:3000/api/products', newProductObj).then((res) => {
+                console.log(res.data)
+                getAllProduct()
+                emptyInputes()
+            })
+        } else {
+            setShowErrorAlert(true)
+            setTimeout(() => {
+                setShowErrorAlert(false)
+            }, 3000);
+        }
+
     }
 
     function emptyInputes() {
@@ -82,7 +94,16 @@ export default function AddNewProduct({ getAllProduct }) {
                 </div>
                 <button className='add-new-product-btn' onClick={(event) => addNewProductHandler(event)}>ثبت محصول</button>
             </form>
-
+            {
+                showErrorAlert ? (
+                    <Stack sx={{ width: '100%' }} spacing={2}>
+                        <Alert severity="error">
+                            <AlertTitle>خطا</AlertTitle>
+                            لطفا تمام مقادیر را وارد کنید
+                        </Alert>
+                    </Stack>
+                ) : null
+            }
         </div>
 
 

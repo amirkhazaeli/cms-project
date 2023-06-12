@@ -63,3 +63,23 @@ table .modal-head th{
     font-size: 1.2rem;
  
 }
+/* edit admin info modal styles */
+.edit-inputes{
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+}
+.edit-input-group{
+    font-size: 1.3rem;
+    width: 300px;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.edit-input-group input{
+   padding: .5rem 1rem;
+   border-radius: .5rem;
+}

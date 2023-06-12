@@ -10,10 +10,6 @@ import Modal from '../Modal/Modal'
 import pagination from '../../Assets/Utils/Pagination'
 
 export default function Comments() {
-  const [showCommentModal, setShowCommentModal] = useState(false)
-  const [showRemoveCommentModal, setShowRemoveCommentModal] = useState(false)
-  const [showEditCommentModal, setShowEditCommentModal] = useState(false)
-  const [showReplayCommentModal, setReplayCommentModal] = useState(false)
   const [allComments, setAllComments] = useState([])
   const [selectComment, setSelectComment] = useState()
   const [editCommentValue, setEditCommentValue] = useState('')
@@ -22,6 +18,13 @@ export default function Comments() {
   const [currentPage, setCurrentPage] = useState(1)
   const [showData, setShowData] = useState()
   const pagesCount = Math.ceil(allComments.length / 10) 
+
+  // modal isActive State
+  const [showCommentModal, setShowCommentModal] = useState(false)
+  const [showRemoveCommentModal, setShowRemoveCommentModal] = useState(false)
+  const [showEditCommentModal, setShowEditCommentModal] = useState(false)
+  const [showReplayCommentModal, setReplayCommentModal] = useState(false)
+
   useEffect(() => {
     getAllComments()
    
@@ -88,7 +91,6 @@ export default function Comments() {
       <h1 className='table-title'>
         <AiOutlineComment />
         کامنت های کاربران
-
       </h1>
       <table>
         <thead>
@@ -158,7 +160,7 @@ export default function Comments() {
       {/* Comment Page Modals */}
       {
         showCommentModal ? (
-          <Modal CommentModalClose={commentModalCloseHandler}>
+          <Modal modalClose={commentModalCloseHandler}>
             <h1>{selectComment.body}</h1>
             <button onClick={commentModalCloseHandler} >بستن</button>
           </Modal>
@@ -166,7 +168,7 @@ export default function Comments() {
       }
       {
         showRemoveCommentModal ? (
-          <Modal RemoveCommentModalClose={RemoveCommentModalCloseHandler}>
+          <Modal modalClose={RemoveCommentModalCloseHandler}>
             <>
               <h1 className='modal-title'>ایا از حذف اطمینان داری؟</h1>
               <button onClick={RemoveCommentModalSubmitHandler}>بله</button>
@@ -178,7 +180,7 @@ export default function Comments() {
       {
         showEditCommentModal ? (
           <>
-            <Modal EditCommentModalClose={EditComponentModalCloseHandler} isshowErrorAlertBox={isshowErrorAlertBox}>
+            <Modal modalClose={EditComponentModalCloseHandler} isshowErrorAlertBox={isshowErrorAlertBox}>
               <h1>متن جدید را وارد کنید</h1>
               <div className='edit-comment'>
                 <textarea value={editCommentValue} onChange={(e) => setEditCommentValue(e.target.value)}>
@@ -192,7 +194,7 @@ export default function Comments() {
       }
       {
         showReplayCommentModal ? (
-          <Modal ReplayCommentModalClose={ReplayCommentModalCloseHandler} isshowErrorAlertBox={isshowErrorAlertBox}>
+          <Modal modalClose={ReplayCommentModalCloseHandler} isshowErrorAlertBox={isshowErrorAlertBox}>
             <h1>پاسخ را ارسال کنید</h1>
             <div className='edit-comment'>
               <textarea value={replayCommentValue} onChange={(e) => setReplayCommentValue(e.target.value)}>
