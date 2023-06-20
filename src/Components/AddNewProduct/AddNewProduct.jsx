@@ -12,6 +12,7 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Stack from '@mui/material/Stack';
 export default function AddNewProduct({ getAllProduct }) {
+
     const [newProductTitle, setNewProductTitle] = useState('')
     const [newProductPrice, setNewProductPrice] = useState()
     const [newProductCount, setNewProductCount] = useState()
@@ -20,7 +21,9 @@ export default function AddNewProduct({ getAllProduct }) {
     const [newProductSale, setNewProductSale] = useState()
     const [newProductColors, setNewProductColors] = useState()
     const [showErrorAlert, setShowErrorAlert] = useState(false)
+    
     const regex = /^\S+$/;
+
     const newProductObj = {
         title: newProductTitle,
         price: newProductPrice,

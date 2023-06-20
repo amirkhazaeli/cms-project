@@ -19,7 +19,7 @@ export default function Comments() {
   const [showData, setShowData] = useState()
   const pagesCount = Math.ceil(allComments.length / 10) 
 
-  // modal isActive State
+  // modal flag 
   const [showCommentModal, setShowCommentModal] = useState(false)
   const [showRemoveCommentModal, setShowRemoveCommentModal] = useState(false)
   const [showEditCommentModal, setShowEditCommentModal] = useState(false)
@@ -33,7 +33,6 @@ export default function Comments() {
     setShowData(pagination(allComments, currentPage))
   }, [allComments,currentPage])
   
-  console.log(showData);
   const getAllComments = () => {
     axios.get('http://localhost:3000/api/comments/').then((res) => {
       setAllComments(res.data)
