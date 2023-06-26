@@ -145,7 +145,7 @@ export default function Comments() {
 
         </tbody>
       </table>
-      {
+      { /* pagination */
         allComments.length > 5 ? (
           <div className='pagination'>
           <Stack spacing={2}>

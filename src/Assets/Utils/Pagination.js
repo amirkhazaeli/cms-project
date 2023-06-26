@@ -5,7 +5,6 @@ function pagination(data, currentPage) {
     const startIndex = endIndex - pagesSize;
 
     showData.push(data.slice(startIndex, endIndex));
-    console.log(showData);
     return showData
 }
 
